@@ -1,4 +1,4 @@
-import Button from '../../ui/Button/button'
+import Button from '../../ui/ButtonComponent/ButtonComponent'
 import classes from './ResultsTitle.module.css'
 
 function ResultsTitle({ date }) {

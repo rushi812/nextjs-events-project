@@ -1,7 +1,7 @@
 import DateIcon from '../../icons/date-icon'
 import AddressIcon from '../../icons/address-icon'
 import ArrowRightIcon from '../../icons/arrow-right-icon'
-import Button from '../../ui/Button/button'
+import Button from '../../ui/ButtonComponent/ButtonComponent'
 
 import classes from './EventItem.module.css'
 

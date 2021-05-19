@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 
 import EventList from '../../components/events/EventList/EventList'
 import ResultsTitle from '../../components/events/ResultsTitle/ResultsTitle'
-import Button from '../../components/ui/Button/Button'
+import Button from '../../components/ui/ButtonComponent/ButtonComponent'
 import ErrorAlert from '../../components/ui/ErrorAlert/ErrorAlert'
 
 import { getFilteredEvents } from '../../dummy-data'

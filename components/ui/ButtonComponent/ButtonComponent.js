@@ -1,8 +1,8 @@
 import Link from 'next/link'
 
-import classes from './Button.module.css'
+import classes from './ButtonComponent.module.css'
 
-const Button = ({ children, link, onClick }) => {
+const ButtonComponent = ({ children, link, onClick }) => {
   return (
     <>
       {link ? (
@@ -18,4 +18,4 @@ const Button = ({ children, link, onClick }) => {
   )
 }
 
-export default Button
+export default ButtonComponent
