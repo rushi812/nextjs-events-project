@@ -22,7 +22,7 @@ yarn build
 
 ## Deployed on Netlify
 
-This project has been deployed [Netlify Platform](https://www.netlify.com/)
+This project has been deployed using [Netlify Platform](https://www.netlify.com/)
 
 ## Live Project in Action
 
