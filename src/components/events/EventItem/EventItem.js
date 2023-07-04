@@ -1,25 +1,27 @@
-import DateIcon from '../../icons/date-icon'
-import AddressIcon from '../../icons/address-icon'
-import ArrowRightIcon from '../../icons/arrow-right-icon'
-import Button from '../../ui/ButtonComponent/ButtonComponent'
+import Image from "next/image";
 
-import classes from './EventItem.module.css'
+import DateIcon from "../../icons/date-icon";
+import AddressIcon from "../../icons/address-icon";
+import ArrowRightIcon from "../../icons/arrow-right-icon";
+import Button from "../../ui/ButtonComponent/ButtonComponent";
+
+import classes from "./EventItem.module.css";
 
 const EventItem = ({ event }) => {
-  const { title, image, date, location, id } = event
+  const { title, image, date, location, id } = event;
 
-  const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  })
+  const humanReadableDate = new Date(date).toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
 
-  const formattedAddress = location.replace(', ', '\n')
-  const exploreLink = `/events/${id}`
+  const formattedAddress = location.replace(", ", "\n");
+  const exploreLink = `/events/${id}`;
 
   return (
     <li className={classes.item}>
-      <img src={`/${image}`} alt={title} />
+      <Image src={`/${image}`} alt={title} width={250} height={160} />
       <div className={classes.content}>
         <div className={classes.summary}>
           <h2>{title}</h2>
@@ -42,7 +44,7 @@ const EventItem = ({ event }) => {
         </div>
       </div>
     </li>
-  )
-}
+  );
+};
 
-export default EventItem
+export default EventItem;

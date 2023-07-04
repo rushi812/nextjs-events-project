@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-
+import Head from "next/head";
 import EventList from "../../components/events/EventList/EventList";
 import ResultsTitle from "../../components/events/ResultsTitle/ResultsTitle";
 import Button from "../../components/ui/ButtonComponent/ButtonComponent";
@@ -11,6 +11,7 @@ import { useAllEvents } from "../../api/events";
 const FilteredEventsPage = () => {
   const [loadedEvents, setLoadedEvents] = useState([]);
   const router = useRouter();
+  const filterData = router.query.slug;
   const { data, isLoading, error } = useAllEvents();
 
   useEffect(() => {
@@ -20,14 +21,24 @@ const FilteredEventsPage = () => {
     }
   }, [data]);
 
-  const filterData = router.query.slug;
-
-  if (isLoading) {
-    return <h1 className="center">Loading...</h1>;
-  }
-
   const year = +filterData[0]; //convert string to number by adding "+"
   const month = +filterData[1];
+
+  const pageHeadData = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta name="description" content={`All Events for ${month}, ${year}`} />
+    </Head>
+  );
+
+  if (isLoading) {
+    return (
+      <>
+        {pageHeadData}
+        <h1 className="center">Loading...</h1>
+      </>
+    );
+  }
 
   if (
     isNaN(year) ||
@@ -40,6 +51,7 @@ const FilteredEventsPage = () => {
   ) {
     return (
       <>
+        {pageHeadData}
         <ErrorAlert>
           <p className="center">Invalid Filter. Please adjust your values!</p>
         </ErrorAlert>
@@ -60,6 +72,7 @@ const FilteredEventsPage = () => {
   if (!filteredEvents || filteredEvents.length === 0) {
     return (
       <>
+        {pageHeadData}
         <ErrorAlert>
           <p>No events found for the chosen filter!</p>
         </ErrorAlert>
@@ -74,6 +87,7 @@ const FilteredEventsPage = () => {
 
   return (
     <>
+      {pageHeadData}
       <ResultsTitle date={date} />
       <EventList items={filteredEvents} />
     </>

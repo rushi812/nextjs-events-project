@@ -1,22 +1,24 @@
-import AddressIcon from '../icons/address-icon'
-import DateIcon from '../icons/date-icon'
+import Image from "next/image";
 
-import LogisticsItem from './LogisticsItem'
+import AddressIcon from "../icons/address-icon";
+import DateIcon from "../icons/date-icon";
 
-import classes from './EventLogistics.module.css'
+import LogisticsItem from "./LogisticsItem";
+
+import classes from "./EventLogistics.module.css";
 
 function EventLogistics({ date, address, image, imageAlt }) {
-  const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  })
-  const addressText = address.replace(', ', '\n')
+  const humanReadableDate = new Date(date).toLocaleDateString("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  });
+  const addressText = address.replace(", ", "\n");
 
   return (
     <section className={classes.logistics}>
       <div className={classes.image}>
-        <img src={`/${image}`} alt={imageAlt} />
+        <Image src={`/${image}`} alt={imageAlt} width={400} height={400} />
       </div>
       <ul className={classes.list}>
         <LogisticsItem icon={DateIcon}>
@@ -27,7 +29,7 @@ function EventLogistics({ date, address, image, imageAlt }) {
         </LogisticsItem>
       </ul>
     </section>
-  )
+  );
 }
 
-export default EventLogistics
+export default EventLogistics;
