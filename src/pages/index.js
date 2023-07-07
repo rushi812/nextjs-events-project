@@ -1,4 +1,4 @@
-import { getFeaturedEvents } from "../api/events";
+import { getFeaturedEvents } from "./api/events";
 import EventList from "../components/events/EventList/EventList";
 import Head from "next/head";
 import NewsletterRegistration from "../components/input/newsletter-registration";

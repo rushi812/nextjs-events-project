@@ -6,7 +6,7 @@ import ResultsTitle from "../../components/events/ResultsTitle/ResultsTitle";
 import Button from "../../components/ui/ButtonComponent/ButtonComponent";
 import ErrorAlert from "../../components/ui/ErrorAlert/ErrorAlert";
 
-import { useAllEvents } from "../../api/events";
+import { useAllEvents } from "../api/events";
 
 const FilteredEventsPage = () => {
   const [loadedEvents, setLoadedEvents] = useState([]);

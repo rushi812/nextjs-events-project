@@ -6,7 +6,7 @@ import EventContent from "../../components/event-detail/EventContent";
 import ErrorAlert from "../../components/ui/ErrorAlert/ErrorAlert";
 import Comments from "../../components/input/comments";
 
-import { getEventById, getFeaturedEvents } from "../../api/events";
+import { getEventById, getFeaturedEvents } from "../api/events";
 
 const EventDetailPage = (props) => {
   const event = props.selectedEvent;
