@@ -1,5 +1,18 @@
-const handler = (req, res) => {
+import {
+  connectDatabase,
+  getAllDocuments,
+  insertDocument,
+} from "../../../helpers/db-utils";
+
+const handler = async (req, res) => {
   const eventId = req.query.eventId;
+  let client;
+  try {
+    client = await connectDatabase();
+  } catch (error) {
+    res.status(500).json("Connecting to the database failed!");
+    return;
+  }
 
   if (req.method === "POST") {
     const { email, name, text } = req.body;
@@ -14,36 +27,42 @@ const handler = (req, res) => {
       text.trim() === ""
     ) {
       res.status(422).json({ status: "FAILED", message: "Invalid input!" });
+      client.close();
       return;
     }
     const newComment = {
-      id: new Date().getTime(),
       email,
       name,
       text,
+      eventId,
     };
-    console.log("RB:: newComemnt", newComment);
-
-    res.status(201).json({
-      status: "SUCCESS",
-      message: "Comment added!",
-      comment: newComment,
-    });
+    try {
+      const result = await insertDocument(client, "comments", newComment);
+      newComment._id = result.insertedId;
+      res.status(201).json({
+        status: "SUCCESS",
+        message: "Comment added!",
+        comment: newComment,
+      });
+    } catch (error) {
+      res.status(500).json("Inserting comment failed!");
+    }
   }
 
   if (req.method === "GET") {
-    const commentsList = [
-      { id: "c1", email: "test@test.com", name: "Rushi", text: "Comment 1" },
-      {
-        id: "c2",
-        email: "test@test1.com",
-        name: "Rushiraj",
-        text: "Comment 2",
-      },
-    ];
-
-    res.status(200).json({ status: "SUCCESS", comments: commentsList });
+    try {
+      const documents = await getAllDocuments(
+        client,
+        "comments",
+        { _id: -1 },
+        { eventId }
+      );
+      res.status(200).json({ status: "SUCCESS", comments: documents });
+    } catch (error) {
+      res.status(500).json("Fetching all comments failed!");
+    }
   }
+  client.close();
 };
 
 export default handler;

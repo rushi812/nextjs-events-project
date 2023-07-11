@@ -5,8 +5,7 @@ import EventList from "../../components/events/EventList/EventList";
 import ResultsTitle from "../../components/events/ResultsTitle/ResultsTitle";
 import Button from "../../components/ui/ButtonComponent/ButtonComponent";
 import ErrorAlert from "../../components/ui/ErrorAlert/ErrorAlert";
-
-import { useAllEvents } from "../api/events";
+import { useAllEvents } from "../../helpers/events";
 
 const FilteredEventsPage = () => {
   const [loadedEvents, setLoadedEvents] = useState([]);
@@ -93,39 +92,5 @@ const FilteredEventsPage = () => {
     </>
   );
 };
-
-// export async function getServerSideProps(context) {
-//   const { params } = context;
-//   const filterData = params.slug;
-//   const year = +filterData[0]; //convert string to number by adding "+"
-//   const month = +filterData[1];
-
-//   if (
-//     isNaN(year) ||
-//     isNaN(month) ||
-//     year > 2030 ||
-//     year < 2021 ||
-//     month < 1 ||
-//     month > 12
-//   ) {
-//     return {
-//       props: { hasError: true },
-//       // notFound: true,
-//       // redirect: { destination: "/error" },
-//     };
-//   }
-
-//   const filteredEvents = await getFilteredEvents({ year, month });
-
-//   return {
-//     props: {
-//       filteredEvents,
-//       date: {
-//         year,
-//         month,
-//       },
-//     },
-//   };
-// }
 
 export default FilteredEventsPage;
