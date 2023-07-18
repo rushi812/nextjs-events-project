@@ -10,7 +10,7 @@ const handler = async (req, res) => {
   try {
     client = await connectDatabase();
   } catch (error) {
-    res.status(500).json("Connecting to the database failed!");
+    res.status(500).json({ message: "Connecting to the database failed!" });
     return;
   }
 
@@ -45,7 +45,7 @@ const handler = async (req, res) => {
         comment: newComment,
       });
     } catch (error) {
-      res.status(500).json("Inserting comment failed!");
+      res.status(500).json({ message: "Inserting comment failed!" });
     }
   }
 
@@ -59,7 +59,7 @@ const handler = async (req, res) => {
       );
       res.status(200).json({ status: "SUCCESS", comments: documents });
     } catch (error) {
-      res.status(500).json("Fetching all comments failed!");
+      res.status(500).json({ message: "Fetching all comments failed!" });
     }
   }
   client.close();
